@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nursing Dosage Dimensional Analysis Practice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Dosage Dimensional Analysis Practice Board</h1>
+    <p class="subtitle">Build fraction chains, cancel units, and learn step by step.</p>
+  </header>
+
+  <section class="disclaimer" aria-label="Educational disclaimer">
+    <strong>Educational Use Only:</strong> This app is for education and practice only. It is not clinical advice and must not be used for real patient care decisions. In real settings, follow your instructor, nursing program, and facility policies.
+  </section>
+
+  <nav class="tabs" aria-label="Main sections">
+    <button class="tab active" data-tab="guided">Guided Practice</button>
+    <button class="tab" data-tab="free">Free Build Workspace</button>
+    <button class="tab" data-tab="generator">Problem Generator</button>
+    <button class="tab" data-tab="help">Help / Tutorial</button>
+  </nav>
+
+  <main>
+    <section id="guided" class="panel active">
+      <h2>Guided Practice</h2>
+      <p id="guidedProblemText" class="problem-text"></p>
+      <div class="guided-actions">
+        <button id="nextGuidedProblemBtn">Next Problem</button>
+        <button id="guidedHintBtn">Show Hint</button>
+        <button id="guidedSolutionBtn">Reveal Worked Solution</button>
+      </div>
+      <p id="guidedHint" class="info-box"></p>
+      <p id="guidedSolution" class="info-box"></p>
+    </section>
+
+    <section id="free" class="panel">
+      <h2>Free Build Workspace</h2>
+      <p>Enter values to create draggable tiles, then build your dimensional analysis setup.</p>
+      <form id="freeBuildForm" class="free-form">
+        <div class="form-grid">
+          <label>Ordered dose value<input type="number" step="any" min="0" id="orderedValue" required /></label>
+          <label>Ordered dose unit
+            <select id="orderedUnit"></select>
+          </label>
+          <label>Available dose value<input type="number" step="any" min="0" id="availableValue" required /></label>
+          <label>Available dose unit
+            <select id="availableUnit"></select>
+          </label>
+          <label>Quantity on hand value<input type="number" step="any" min="0" id="handValue" required /></label>
+          <label>Quantity on hand unit
+            <select id="handUnit"></select>
+          </label>
+          <label>Optional conversion value A<input type="number" step="any" min="0" id="convAValue" /></label>
+          <label>Optional conversion unit A
+            <select id="convAUnit"></select>
+          </label>
+          <label>Optional conversion value B<input type="number" step="any" min="0" id="convBValue" /></label>
+          <label>Optional conversion unit B
+            <select id="convBUnit"></select>
+          </label>
+        </div>
+        <button type="submit">Create Tiles</button>
+      </form>
+      <p id="freeBuildMessage" class="info-box"></p>
+    </section>
+
+    <section id="generator" class="panel">
+      <h2>Problem Generator</h2>
+      <label>Category
+        <select id="problemCategory">
+          <option value="tablets">Tablets / Capsules</option>
+          <option value="oral">Oral Liquids (mL)</option>
+          <option value="injection">Simple Injections (mL)</option>
+          <option value="conversion">mcg / mg / g Conversion</option>
+          <option value="multistep">Simple Multi-Step Conversion</option>
+        </select>
+      </label>
+      <button id="generateProblemBtn">Generate Problem</button>
+      <div id="generatedProblem" class="info-box"></div>
+      <button id="loadGeneratedBtn" disabled>Load Generated Problem into Workspace</button>
+    </section>
+
+    <section id="help" class="panel">
+      <h2>Help / Tutorial</h2>
+      <ol>
+        <li>Read the problem and identify the unit you need in the final answer.</li>
+        <li>Drag a value tile into a numerator or denominator slot.</li>
+        <li>Use <em>Add Step</em> for extra conversion factors.</li>
+        <li>Use arrow buttons to reorder steps if your setup needs adjustment.</li>
+        <li>Select <em>Check cancellation</em> to see crossed-out units and feedback.</li>
+      </ol>
+      <h3>Common mistakes</h3>
+      <ul>
+        <li>Wrong answer unit left over at the end.</li>
+        <li>Forgot a needed conversion factor (for example mg to mcg).</li>
+        <li>Numerator and denominator flipped.</li>
+        <li>Units do not fully cancel.</li>
+      </ul>
+      <p>Rounding note: This app can show rounded results for learning. Your school or instructor may use different rounding rules.</p>
+    </section>
+
+    <section class="workspace-area">
+      <h2>Build your setup</h2>
+      <div class="workspace-controls">
+        <button id="addStepBtn">Add Step</button>
+        <button id="resetWorkspaceBtn">Reset workspace</button>
+        <button id="checkCancellationBtn">Check cancellation</button>
+      </div>
+
+      <div id="tileBank" class="tile-bank" aria-label="Draggable tiles"></div>
+      <div id="workspace" class="workspace" aria-label="Dimensional analysis workspace"></div>
+
+      <section class="results">
+        <p id="feedback" class="info-box">Build a fraction chain, then check cancellation.</p>
+        <p id="result" class="result"></p>
+        <p id="pathway" class="pathway"></p>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
